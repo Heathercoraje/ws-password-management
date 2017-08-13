@@ -1,15 +1,28 @@
 'use strict'
-
+const test = require('tape');
 require('dotenv').config()
 
-const { hashPassword, comparePasswords } = require('./index.js')
+const {
+  hashPassword,
+  comparePasswords
+} = require('./index.js')
 
-test('password is being hashed correctly', () =>
-  hashPassword('wehey', (err, res) => {
-    expect(err).toBe(null)
-    expect(res.substring(0, 4)).toBe('$2a$')
+// test('password is being hashed correctly', () =>
+//   hashPassword('wehey', (err, res) => {
+//     expect(err).toBe(null)
+//     expect(res.substring(0, 4)).toBe('$2a$')
+//   })
+// )
+test('test one', (t) => {
+  hashPassworld('wehey', (err, res) => {
+    t.equal(err, null);
+    t.equal(res.substring(0, 4), '$2a$');
+    t.end();
   })
-)
+});
+
+
+
 
 test('passwords are being validated correctly - pass', () =>
   hashPassword('pa$$w0rd', (err, hashedPw) => {
